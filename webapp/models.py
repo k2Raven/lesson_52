@@ -1,5 +1,5 @@
 from django.db import models
-
+status_choices = [('new', 'Новая'), ('in_progress', 'В процессе'),  ('done', 'Сделано')]
 class Article(models.Model):
     title = models.CharField(max_length=50,
                              null=False,

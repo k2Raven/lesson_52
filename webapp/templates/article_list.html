@@ -12,7 +12,7 @@
         <div>
         <h2>Название: {{ article.title }}</h2>
         <p>Автор: {{ article.author }}</p>
-        <a href="#">Подробнее...</a>
+        <a href="/article/?id={{ article.id }}">Подробнее...</a>
         </div>
     {% endfor %}
 

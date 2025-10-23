@@ -1,0 +1,64 @@
+[
+{
+  "model": "webapp.article",
+  "pk": 1,
+  "fields": {
+    "title": "Статья 1",
+    "content": "Текст текст",
+    "author": "Anonymous",
+    "created_at": "2025-10-23T14:06:14.003Z",
+    "updated_at": "2025-10-23T14:06:14.003Z"
+  }
+},
+{
+  "model": "webapp.article",
+  "pk": 2,
+  "fields": {
+    "title": "Title",
+    "content": "Content",
+    "author": "User",
+    "created_at": "2025-10-23T14:34:07.636Z",
+    "updated_at": "2025-10-23T14:34:07.636Z"
+  }
+},
+{
+  "model": "webapp.article",
+  "pk": 3,
+  "fields": {
+    "title": "Title 2",
+    "content": "Content",
+    "author": "User 2",
+    "created_at": "2025-10-23T14:42:10.523Z",
+    "updated_at": "2025-10-23T14:42:10.523Z"
+  }
+},
+{
+  "model": "webapp.article",
+  "pk": 4,
+  "fields": {
+    "title": "test",
+    "content": "qwe\r\nqaweqw\r\nadqew",
+    "author": "user 2",
+    "created_at": "2025-10-23T15:30:02.386Z",
+    "updated_at": "2025-10-23T15:30:02.386Z"
+  }
+},
+{
+  "model": "auth.user",
+  "pk": 1,
+  "fields": {
+    "password": "pbkdf2_sha256$1000000$sNQh6lyX7ZkvZfGycblu52$EXZ4Mkd72Lw0XvdoGB4Y/FF6hLeANuHvT20bvQhFoWs=",
+    "last_login": "2025-10-23T14:04:32.501Z",
+    "is_superuser": true,
+    "username": "admin",
+    "first_name": "",
+    "last_name": "",
+    "email": "",
+    "is_staff": true,
+    "is_active": true,
+    "date_joined": "2025-10-23T14:03:49.412Z",
+    "groups": [],
+    "user_permissions": []
+  }
+}
+]

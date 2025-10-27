@@ -1,7 +1,7 @@
-from django.http import HttpResponseRedirect
-from django.shortcuts import render
+from django.http import HttpResponseRedirect, HttpResponseNotFound, Http404
+from django.shortcuts import render, get_object_or_404, reverse, redirect
 
-from webapp.models import Article, status_choices
+from webapp.models import Article
 
 
 def article_list_view(request):
@@ -11,13 +11,15 @@ def article_list_view(request):
     }
     return render(request, 'article_list.html', context)
 
-def article_detail_view(request):
-    article_id = request.GET.get('id')
-    if article_id:
-        article = Article.objects.get(id=article_id)
-        return render(request, 'article_detail.html', {'article': article})
-    else:
-        return HttpResponseRedirect('/')
+def article_detail_view(request, *args, pk, **kwargs):
+    # try:
+    #     article = Article.objects.get(id=pk)
+    #     return render(request, 'article_detail.html', {'article': article})
+    # except Article.DoesNotExist:
+    #     # return HttpResponseNotFound('<h1>Article not found</h1>')
+    #     raise Http404()
+    article = get_object_or_404(Article, pk=pk)
+    return render(request, 'article_detail.html', {'article': article})
 
 
 def article_create_view(request):
@@ -28,5 +30,7 @@ def article_create_view(request):
         title = request.POST.get('title')
         content = request.POST.get('content')
         author = request.POST.get('author')
-        Article.objects.create(title=title, content=content, author=author)
-        return HttpResponseRedirect('/')
+        article = Article.objects.create(title=title, content=content, author=author)
+        # return HttpResponseRedirect(reverse('article_list'))
+        # return redirect('article_list')
+        return redirect('article_detail', pk=article.id)

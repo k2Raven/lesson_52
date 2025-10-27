@@ -8,13 +8,13 @@
 
     <h1> Статьи </h1>
 
-    <p><a href="/article/create/">Создать Статью</a></p>
+    <p><a href="{% url 'article_create' %}">Создать Статью</a></p>
 
     {% for article in articles %}
         <div>
         <h2>Название: {{ article.title }}</h2>
         <p>Автор: {{ article.author }}</p>
-        <a href="/article/?id={{ article.id }}">Подробнее...</a>
+        <a href="{% url 'article_detail' article.id %}">Подробнее...</a>
         </div>
     {% endfor %}
 

@@ -1,22 +1,21 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Article</title>
-</head>
-<body>
+{% extends 'base.html' %}
 
+{% block title %}Статьи{% endblock %}
+
+{% block content %}
     <h1> Статьи </h1>
 
-    <p><a href="{% url 'article_create' %}">Создать Статью</a></p>
-
-    {% for article in articles %}
-        <div>
-        <h2>Название: {{ article.title }}</h2>
-        <p>Автор: {{ article.author }}</p>
-        <a href="{% url 'article_detail' article.id %}">Подробнее...</a>
-        </div>
-    {% endfor %}
-
-</body>
-</html>
+    <div class="row row-cols-2 row-cols-md-4">
+        {% for article in articles %}
+            <div class="col">
+                <div class="card mb-2">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ article.title }}</h5>
+                        <p class="card-text">Автор: {{ article.author }}</p>
+                        <a href="{% url 'article_detail' article.id %}" class="btn btn-primary">Подробнее...</a>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}

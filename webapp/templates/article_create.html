@@ -19,6 +19,14 @@
         <label>Контент:</label>
         <textarea name="content" rows="10" cols="30" required></textarea>
     </p>
+    <p>
+        <label>Статус:</label>
+        <select name="status_id">
+            {% for s in status %}
+                <option value="{{ s.id }}">{{ s.title }}</option>
+            {% endfor %}
+        </select>
+    </p>
     <input type="submit" value="Создать">
 </form>
 {% endblock %}

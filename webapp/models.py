@@ -1,5 +1,8 @@
 from django.db import models
-status_choices = [('new', 'Новая'), ('in_progress', 'В процессе'),  ('done', 'Сделано')]
+
+status_choices = [('new', 'Новая'), ('moderated', 'Модерированная'), ('delete', 'Удаленная')]
+
+
 class Article(models.Model):
     title = models.CharField(max_length=50,
                              null=False,
@@ -9,7 +12,7 @@ class Article(models.Model):
     author = models.CharField(max_length=50, default='Anonymous', verbose_name='Автор')
     created_at = models.DateTimeField(auto_now_add=True, verbose_name='Дата создания')
     updated_at = models.DateTimeField(auto_now=True, verbose_name='Дата обновления')
+    status = models.CharField(max_length=20, choices=status_choices, default=status_choices[0][0], verbose_name='Статус')
 
     def __str__(self):
         return f'{self.id} - {self.title}'
-

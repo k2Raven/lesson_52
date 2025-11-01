@@ -44,11 +44,33 @@
   }
 },
 {
+  "model": "webapp.article",
+  "pk": 5,
+  "fields": {
+    "title": "New article",
+    "content": "text",
+    "author": "Anonymous",
+    "created_at": "2025-10-30T14:10:33.784Z",
+    "updated_at": "2025-10-30T14:10:33.784Z"
+  }
+},
+{
+  "model": "webapp.article",
+  "pk": 6,
+  "fields": {
+    "title": "New article",
+    "content": "text",
+    "author": "Anonymous",
+    "created_at": "2025-10-30T14:11:04.867Z",
+    "updated_at": "2025-10-30T14:11:04.867Z"
+  }
+},
+{
   "model": "auth.user",
   "pk": 1,
   "fields": {
     "password": "pbkdf2_sha256$1000000$sNQh6lyX7ZkvZfGycblu52$EXZ4Mkd72Lw0XvdoGB4Y/FF6hLeANuHvT20bvQhFoWs=",
-    "last_login": "2025-10-23T14:04:32.501Z",
+    "last_login": "2025-10-30T14:18:54.864Z",
     "is_superuser": true,
     "username": "admin",
     "first_name": "",

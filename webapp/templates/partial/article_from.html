@@ -1,31 +1,41 @@
 {% csrf_token %}
-<p>
-    <label>Название:</label>
-    {% if errors.title %}
-        <input type="text" name="title" value="{{ article.title }}">
-        <p class="text-danger">{{ errors.title }}</p>
-    {% else %}
-        <input type="text" name="title" value="{{ article.title }}">
-    {% endif %}
-</p>
-<p>
-    <label>Автор:</label>
-    {% if errors.author %}
-        <input type="text" name="author" value="{{ article.author }}">
-        <p class="text-danger">{{ errors.author }}</p>
-    {% else %}
-        <input type="text" name="author" value="{{ article.author }}">
-    {% endif %}
-</p>
-<p>
-    <label>Контент:</label>
-    {% if errors.content %}
-        <textarea name="content" rows="10" cols="30">{{ article.content }}</textarea>
-        <p class="text-danger">{{ errors.content }}</p>
-    {% else %}
-        <textarea name="content" rows="10" cols="30">{{ article.content }}</textarea>
-    {% endif %}
+{#{{ form.as_p }}#}
 
-</p>
+{% for error in form.non_field_errors %}
+    <p class="text-danger">{{ error }}</p>
+{% endfor %}
+
+{#<div class="row">#}
+{#    <div class="col-6">#}
+{#        <p><label for="{{ form.title.id_for_label }}">{{ form.title.label }}</label></p>#}
+{#        {% for error in form.title.errors %}#}
+{#            <p class="text-danger">{{ error }}</p>#}
+{#        {% endfor %}#}
+{#        <p>{{ form.title }}</p>#}
+{#    </div>#}
+{#    <div class="col-6">#}
+{#        <p><label for="{{ form.author.id_for_label }}">{{ form.author.label }}</label></p>#}
+{#        {% for error in form.author.errors %}#}
+{#            <p class="text-danger">{{ error }}</p>#}
+{#        {% endfor %}#}
+{#        <p>{{ form.author }}</p>#}
+{#    </div>#}
+{#</div>#}
+{##}
+{##}
+{#<p><label for="{{ form.content.id_for_label }}">{{ form.content.label }}</label></p>#}
+{#{% for error in form.content.errors %}#}
+{#    <p class="text-danger">{{ error }}</p>#}
+{#{% endfor %}#}
+{#<p>{{ form.content }}</p>#}
+
+
+{% for field in form %}
+   <p><label for="{{ field.id_for_label }}">{{ field.label }}</label></p>
+   {% for error in field.errors %}
+       <p class="text-danger">{{ error }}</p>
+   {% endfor %}
+   <p>{{ field }}</p>
+{% endfor %}
 
 <button type="submit">{{ button_name }}</button>

@@ -39,5 +39,7 @@ def article_update_view(request, *args, pk, **kwargs):
 
 def article_delete_view(request, *args, pk, **kwargs):
     article = get_object_or_404(Article, pk=pk)
+    if request.method == "GET":
+        return render(request, 'article_delete.html', {'article': article})
     article.delete()
     return redirect('article_list')

@@ -1,15 +1,31 @@
 {% csrf_token %}
 <p>
     <label>Название:</label>
-    <input type="text" name="title" required value="{{ article.title }}">
+    {% if errors.title %}
+        <input type="text" name="title" value="{{ article.title }}">
+        <p class="text-danger">{{ errors.title }}</p>
+    {% else %}
+        <input type="text" name="title" value="{{ article.title }}">
+    {% endif %}
 </p>
 <p>
     <label>Автор:</label>
-    <input type="text" name="author" value="{{ article.author }}">
+    {% if errors.author %}
+        <input type="text" name="author" value="{{ article.author }}">
+        <p class="text-danger">{{ errors.author }}</p>
+    {% else %}
+        <input type="text" name="author" value="{{ article.author }}">
+    {% endif %}
 </p>
 <p>
     <label>Контент:</label>
-    <textarea name="content" rows="10" cols="30" required>{{ article.content }}</textarea>
+    {% if errors.content %}
+        <textarea name="content" rows="10" cols="30">{{ article.content }}</textarea>
+        <p class="text-danger">{{ errors.content }}</p>
+    {% else %}
+        <textarea name="content" rows="10" cols="30">{{ article.content }}</textarea>
+    {% endif %}
+
 </p>
 
 <button type="submit">{{ button_name }}</button>

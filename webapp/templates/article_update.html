@@ -6,7 +6,6 @@
 <h1>Обновление статьи</h1>
 
 <form method="POST" action="">
-    {% include 'partial/article_from.html' %}
-    <input type="submit" value="Обновить">
+    {% include 'partial/article_from.html' with button_name='Обновить' %}
 </form>
 {% endblock %}

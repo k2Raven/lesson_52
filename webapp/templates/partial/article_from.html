@@ -1,0 +1,13 @@
+{% csrf_token %}
+<p>
+    <label>Название:</label>
+    <input type="text" name="title" required value="{{ article.title }}">
+</p>
+<p>
+    <label>Автор:</label>
+    <input type="text" name="author" value="{{ article.author }}">
+</p>
+<p>
+    <label>Контент:</label>
+    <textarea name="content" rows="10" cols="30" required>{{ article.content }}</textarea>
+</p>

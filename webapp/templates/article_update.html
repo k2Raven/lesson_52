@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block title %}Обновление статьи{% endblock %}
+
+{% block content %}
+<h1>Обновление статьи</h1>
+
+<form method="POST" action="">
+    {% include 'partial/article_from.html' %}
+    <input type="submit" value="Обновить">
+</form>
+{% endblock %}

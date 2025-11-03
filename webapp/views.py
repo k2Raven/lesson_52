@@ -12,12 +12,6 @@ def article_list_view(request):
     return render(request, 'article_list.html', context)
 
 def article_detail_view(request, *args, pk, **kwargs):
-    # try:
-    #     article = Article.objects.get(id=pk)
-    #     return render(request, 'article_detail.html', {'article': article})
-    # except Article.DoesNotExist:
-    #     # return HttpResponseNotFound('<h1>Article not found</h1>')
-    #     raise Http404()
     article = get_object_or_404(Article, pk=pk)
     return render(request, 'article_detail.html', {'article': article})
 
@@ -25,12 +19,25 @@ def article_detail_view(request, *args, pk, **kwargs):
 def article_create_view(request):
     if request.method == 'GET':
         return render(request, 'article_create.html')
-        # return render(request, 'article_create.html', {'status_choices': status_choices})
     elif request.method == 'POST':
         title = request.POST.get('title')
         content = request.POST.get('content')
         author = request.POST.get('author')
         article = Article.objects.create(title=title, content=content, author=author)
-        # return HttpResponseRedirect(reverse('article_list'))
-        # return redirect('article_list')
         return redirect('article_detail', pk=article.id)
+
+def article_update_view(request, *args, pk, **kwargs):
+    article = get_object_or_404(Article, pk=pk)
+    if request.method == "GET":
+        return render(request, 'article_update.html', {'article': article})
+    elif request.method == "POST":
+        article.title = request.POST.get('title')
+        article.author = request.POST.get('author')
+        article.content = request.POST.get('content')
+        article.save()
+        return redirect('article_detail', pk=article.id)
+
+def article_delete_view(request, *args, pk, **kwargs):
+    article = get_object_or_404(Article, pk=pk)
+    article.delete()
+    return redirect('article_list')

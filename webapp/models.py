@@ -25,8 +25,6 @@ class Article(BaseModel):
                                   through='webapp.ArticleTag',
                                   through_fields=('article', 'tag'))
 
-
-
     def __str__(self):
         return f'{self.id} - {self.title}'
 
@@ -40,8 +38,10 @@ class Comment(BaseModel):
     def __str__(self):
         return self.text[:20]
 
+
 class Tag(BaseModel):
     name = models.CharField(max_length=50, unique=True, verbose_name='Название')
+
     # articles = models.ManyToManyField('webapp.Article',
     #                                   verbose_name='Статьи',
     #                                   related_name='tags',
@@ -49,6 +49,7 @@ class Tag(BaseModel):
 
     def __str__(self):
         return self.name
+
 
 class ArticleTag(BaseModel):
     article = models.ForeignKey('webapp.Article', related_name='article_tags',

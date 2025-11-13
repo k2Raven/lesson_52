@@ -29,12 +29,7 @@ class ArticleCreateView(FormView):
     form_class = ArticleForm
 
     def form_valid(self, form):
-        self.article = Article()
-        self.article.title = form.cleaned_data.get('title')
-        self.article.content = form.cleaned_data.get('content')
-        self.article.author = form.cleaned_data.get('author')
-        self.article.save()
-        self.article.tags.set(form.cleaned_data.get('tags'))
+        self.article = form.save()
         return redirect('article_detail', pk=self.article.pk)
 
 
@@ -50,20 +45,13 @@ class ArticleUpdateView(FormView):
     def get_success_url(self):
         return reverse('article_detail', kwargs={'pk': self.article.pk})
 
-    def get_initial(self):
-        return {
-            'title': self.article.title,
-            'content': self.article.content,
-            'author': self.article.author,
-            'tags': self.article.tags.all()
-        }
+    def get_form_kwargs(self):
+        kwargs = super().get_form_kwargs()
+        kwargs['instance'] = self.article
+        return kwargs
 
     def form_valid(self, form):
-        self.article.title = form.cleaned_data.get('title')
-        self.article.content = form.cleaned_data.get('content')
-        self.article.author = form.cleaned_data.get('author')
-        self.article.save()
-        self.article.tags.set(form.cleaned_data.get('tags'))
+        form.save()
         return super().form_valid(form)
 
 

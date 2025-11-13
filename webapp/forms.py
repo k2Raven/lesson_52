@@ -1,12 +1,31 @@
 from django import forms
 from django.forms import widgets
+from django.core.exceptions import ValidationError
 
-from webapp.models import Tag
+from webapp.models import Article
 
-class ArticleForm(forms.Form):
-    title = forms.CharField(max_length=50, min_length=3, required=True, label='Название', widget=widgets.Input(attrs={'class': 'form-control'}))
-    author = forms.CharField(max_length=50, required=True, label='Автор', widget=widgets.Input(attrs={'class': 'form-control'}))
-    content = forms.CharField(widget=forms.Textarea(attrs={'class': 'form-control'}), required=True, label='Контент')
-    tags = forms.ModelMultipleChoiceField(queryset=Tag.objects.all(), required=False, label='Теги')
 
-    # status = forms.ChoiceField(choices=status_choices, label='Статус', widget=widgets.RadioSelect)
+class ArticleForm(forms.ModelForm):
+    class Meta:
+        model = Article
+        fields = ['title', 'content', 'author', 'tags']
+        # exclude = ['created_at', 'updated_at']
+        widgets = {
+            'title': widgets.Input(attrs={'class': 'form-control'}),
+            'content': widgets.Textarea(attrs={'class': 'form-control'}),
+            'author': widgets.Input(attrs={'class': 'form-control'}),
+            'tags': widgets.CheckboxSelectMultiple()
+        }
+
+    def clean_title(self):
+        title = self.cleaned_data.get('title')
+        if len(title) < 3:
+            raise ValidationError('Заголовок должен быть не менее 3 символов')
+        return title
+
+    def clean(self):
+        title = self.cleaned_data.get('title')
+        content = self.cleaned_data.get('content')
+        if title and content and title == content:
+            raise ValidationError('Заголовок и контент не должны совпадать')
+        return super().clean()

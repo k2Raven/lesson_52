@@ -27,10 +27,6 @@ class ArticleDetailView(TemplateView):
 class ArticleCreateView(FormView):
     template_name = 'article_create.html'
     form_class = ArticleForm
-    # success_url = reverse_lazy('article_list')
-
-    # def get_success_url(self):
-    #     return reverse('article_detail', kwargs={'pk': self.article.pk})
 
     def form_valid(self, form):
         self.article = Article()
@@ -41,24 +37,37 @@ class ArticleCreateView(FormView):
         self.article.tags.set(form.cleaned_data.get('tags'))
         return redirect('article_detail', pk=self.article.pk)
 
-        # return super().form_valid(form)
 
-def article_update_view(request, *args, pk, **kwargs):
-    article = get_object_or_404(Article, pk=pk)
-    if request.method == "GET":
-        form = ArticleForm(initial={'title': article.title, 'content': article.content, 'author': article.author,
-                                    'tags': article.tags.all()})
-        return render(request, 'article_update.html', {'form': form})
-    elif request.method == "POST":
-        form = ArticleForm(data=request.POST)
-        if form.is_valid():
-            article.title = form.cleaned_data.get('title')
-            article.content = form.cleaned_data.get('content')
-            article.author = form.cleaned_data.get('author')
-            article.save()
-            article.tags.set(form.cleaned_data.get('tags'))
-            return redirect('article_detail', pk=article.id)
-        return render(request, 'article_update.html', {'form': form})
+
+class ArticleUpdateView(FormView):
+    template_name = 'article_update.html'
+    form_class = ArticleForm
+
+    def dispatch(self, request, *args, **kwargs):
+        self.article = get_object_or_404(Article, pk=self.kwargs.get('pk'))
+        return super().dispatch(request, *args, **kwargs)
+
+    def get_success_url(self):
+        return reverse('article_detail', kwargs={'pk': self.article.pk})
+
+    def get_initial(self):
+        return {
+            'title': self.article.title,
+            'content': self.article.content,
+            'author': self.article.author,
+            'tags': self.article.tags.all()
+        }
+
+    def form_valid(self, form):
+        self.article.title = form.cleaned_data.get('title')
+        self.article.content = form.cleaned_data.get('content')
+        self.article.author = form.cleaned_data.get('author')
+        self.article.save()
+        self.article.tags.set(form.cleaned_data.get('tags'))
+        return super().form_valid(form)
+
+
+
 
 
 def article_delete_view(request, *args, pk, **kwargs):

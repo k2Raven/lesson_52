@@ -12,11 +12,11 @@ class ArticleListView(View):
         context = {
             'articles': articles
         }
-        return render(request, 'article_list.html', context)
+        return render(request, 'article/article_list.html', context)
 
 
 class ArticleDetailView(TemplateView):
-    template_name = 'article_detail.html'
+    template_name = 'article/article_detail.html'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -25,7 +25,7 @@ class ArticleDetailView(TemplateView):
 
 
 class ArticleCreateView(FormView):
-    template_name = 'article_create.html'
+    template_name = 'article/article_create.html'
     form_class = ArticleForm
 
     def form_valid(self, form):
@@ -35,7 +35,7 @@ class ArticleCreateView(FormView):
 
 
 class ArticleUpdateView(FormView):
-    template_name = 'article_update.html'
+    template_name = 'article/article_update.html'
     form_class = ArticleForm
 
     def dispatch(self, request, *args, **kwargs):
@@ -61,6 +61,6 @@ class ArticleUpdateView(FormView):
 def article_delete_view(request, *args, pk, **kwargs):
     article = get_object_or_404(Article, pk=pk)
     if request.method == "GET":
-        return render(request, 'article_delete.html', {'article': article})
+        return render(request, 'article/article_delete.html', {'article': article})
     article.delete()
     return redirect('article_list')

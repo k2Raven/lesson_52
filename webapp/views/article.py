@@ -1,18 +1,47 @@
+from django.db.models import Q
 from django.shortcuts import render, get_object_or_404, redirect
-from django.urls import reverse, reverse_lazy
-from django.views.generic import View, TemplateView, FormView
+from django.urls import reverse
+from django.utils.http import urlencode
+from django.views.generic import TemplateView, FormView, ListView
 
 from webapp.models import Article
-from webapp.forms import ArticleForm
+from webapp.forms import ArticleForm, SimpleSearchForm
 
 
-class ArticleListView(View):
-    def get(self, request, *args, **kwargs):
-        articles = Article.objects.all()
-        context = {
-            'articles': articles
-        }
-        return render(request, 'article/article_list.html', context)
+class ArticleListView(ListView):
+    template_name = 'article/article_list.html'
+    model = Article
+    context_object_name = 'articles'
+    paginate_by = 4
+
+    def dispatch(self, request, *args, **kwargs):
+        self.search_form = self.get_search_form()
+        self.search_value = self.get_search_value()
+        return super().dispatch(request, *args, **kwargs)
+
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        if self.search_value:
+            queryset = queryset.filter(Q(title__icontains=self.search_value) |
+                                       Q(content__icontains=self.search_value))
+        return queryset
+
+    def get_context_data(self, *, object_list = None, **kwargs):
+        context = super().get_context_data(object_list=object_list, **kwargs)
+        context['search_form'] = self.search_form
+        if self.search_value:
+            context['query'] = urlencode({'search': self.search_value})
+            context['search_value'] = self.search_value
+        return context
+
+    def get_search_form(self):
+        return SimpleSearchForm(self.request.GET)
+
+    def get_search_value(self):
+        search_value = ''
+        if self.search_form.is_valid():
+            search_value = self.search_form.cleaned_data.get('search', '')
+        return search_value
 
 
 class ArticleDetailView(TemplateView):

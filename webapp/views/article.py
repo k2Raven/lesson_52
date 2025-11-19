@@ -13,6 +13,7 @@ class ArticleListView(ListView):
     model = Article
     context_object_name = 'articles'
     paginate_by = 4
+    ordering = ['-created_at']
 
     def dispatch(self, request, *args, **kwargs):
         self.search_form = self.get_search_form()

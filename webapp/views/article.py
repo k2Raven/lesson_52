@@ -2,7 +2,7 @@ from django.db.models import Q
 from django.shortcuts import render, get_object_or_404, redirect
 from django.urls import reverse
 from django.utils.http import urlencode
-from django.views.generic import TemplateView, FormView, ListView
+from django.views.generic import TemplateView, FormView, ListView, DetailView
 
 from webapp.models import Article
 from webapp.forms import ArticleForm, SimpleSearchForm
@@ -44,12 +44,16 @@ class ArticleListView(ListView):
         return search_value
 
 
-class ArticleDetailView(TemplateView):
+class ArticleDetailView(DetailView):
     template_name = 'article/article_detail.html'
+    model = Article
+    # pk_url_kwarg = 'pk'
+    # context_object_name = 'article'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['article'] = get_object_or_404(Article, pk=self.kwargs.get('pk'))
+        article = self.object
+        context['comments'] = article.comments.order_by('-created_at')
         return context
 
 

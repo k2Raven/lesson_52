@@ -25,3 +25,12 @@ class CommentUpdateView(UpdateView):
 
     def get_success_url(self):
         return reverse('article_detail', kwargs={'pk': self.object.article.pk})
+
+class CommentDeleteView(DeleteView):
+    model = Comment
+
+    def get(self, request, *args, **kwargs):
+        return self.delete(request, *args, **kwargs)
+
+    def get_success_url(self):
+        return reverse('article_detail', kwargs={'pk': self.object.article.pk})

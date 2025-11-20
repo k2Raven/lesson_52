@@ -1,5 +1,8 @@
 from django.db import models
+from django.urls import reverse
+
 from webapp.models import BaseModel
+
 
 
 class Article(BaseModel):
@@ -13,3 +16,6 @@ class Article(BaseModel):
 
     def __str__(self):
         return f'{self.id} - {self.title}'
+
+    def get_absolute_url(self):
+        return reverse('article_detail', kwargs={'pk': self.pk})

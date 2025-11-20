@@ -15,6 +15,8 @@
                     {{ tag }}{% if forloop.last %}.{% else %},{% endif %}
                 {% endfor %}
             </p>
+            <a href="{% url 'article_update' article.id %}" class="btn btn-primary">Изменить</a>
+            <a href="{% url 'article_delete' article.id %}" class="btn btn-primary">Удалить</a>
         </div>
     </div>
 
@@ -25,7 +27,7 @@
                 <div class="card">
                     <div class="card-header">
                         <p>Автор:{{ comment.author }}</p>
-{#                        <span>{{ comment.created_at }}</span>#}
+                        {#                        <span>{{ comment.created_at }}</span>#}
                     </div>
                     <div class="card-body">
                         <h5 class="card-title">{{ comment.text }}</h5>

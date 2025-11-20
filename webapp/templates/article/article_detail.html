@@ -17,6 +17,7 @@
             </p>
             <a href="{% url 'article_update' article.id %}" class="btn btn-primary">Изменить</a>
             <a href="{% url 'article_delete' article.id %}" class="btn btn-primary">Удалить</a>
+            <a href="{% url 'comment_create' article.id  %}" class="btn btn-primary">Добавить комментарий</a>
         </div>
     </div>
 

@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+{% block title %}Изменение комментария{% endblock %}
+
+{% block content %}
+<h1>Изменение комментария</h1>
+
+<form method="POST" action="">
+    {% include 'partial/form.html' with button_name='Обновить' %}
+</form>
+{% endblock %}

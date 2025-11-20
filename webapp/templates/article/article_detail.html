@@ -32,6 +32,7 @@
                     </div>
                     <div class="card-body">
                         <h5 class="card-title">{{ comment.text }}</h5>
+                        <a href="{% url 'comment_update' comment.id  %}" class="btn btn-primary">Изменить</a>
                     </div>
                 </div>
             </div>

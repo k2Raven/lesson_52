@@ -1,7 +1,9 @@
 from django.db.models import Q
+from django.shortcuts import redirect
 from django.urls import reverse_lazy
 from django.utils.http import urlencode
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 from webapp.models import Article
 from webapp.forms import ArticleForm, SimpleSearchForm
@@ -59,11 +61,16 @@ class ArticleDetailView(DetailView):
         return context
 
 
-class ArticleCreateView(CreateView):
+class ArticleCreateView(LoginRequiredMixin, CreateView):
     template_name = 'article/article_create.html'
     # model = Article
     # fields = ['title', 'content', 'author', 'tags']
     form_class = ArticleForm
+
+    # def dispatch(self, request, *args, **kwargs):
+    #     if request.user.is_authenticated:
+    #         return super().dispatch(request, *args, **kwargs)
+    #     return redirect('accounts:login')
 
     # def get_success_url(self):
     #     return reverse('webapp:article_detail', kwargs={'pk': self.object.pk})

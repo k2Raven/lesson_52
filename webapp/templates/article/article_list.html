@@ -12,9 +12,9 @@
                     <div class="card-body">
                         <h5 class="card-title">{{ article.title }}</h5>
                         <p class="card-text">Автор: {{ article.author }}</p>
-                        <a href="{% url 'article_detail' article.id %}" class="btn btn-primary">Подробнее...</a>
-                        <a href="{% url 'article_update' article.id %}" class="btn btn-primary">Изменить</a>
-                        <a href="{% url 'article_delete' article.id %}" class="btn btn-primary">Удалить</a>
+                        <a href="{% url 'webapp:article_detail' article.id %}" class="btn btn-primary">Подробнее...</a>
+                        <a href="{% url 'webapp:article_update' article.id %}" class="btn btn-primary">Изменить</a>
+                        <a href="{% url 'webapp:article_delete' article.id %}" class="btn btn-primary">Удалить</a>
                     </div>
                 </div>
             </div>

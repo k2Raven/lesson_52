@@ -15,9 +15,9 @@
                     {{ tag }}{% if forloop.last %}.{% else %},{% endif %}
                 {% endfor %}
             </p>
-            <a href="{% url 'article_update' article.id %}" class="btn btn-primary">Изменить</a>
-            <a href="{% url 'article_delete' article.id %}" class="btn btn-primary">Удалить</a>
-            <a href="{% url 'comment_create' article.id  %}" class="btn btn-primary">Добавить комментарий</a>
+            <a href="{% url 'webapp:article_update' article.id %}" class="btn btn-primary">Изменить</a>
+            <a href="{% url 'webapp:article_delete' article.id %}" class="btn btn-primary">Удалить</a>
+            <a href="{% url 'webapp:comment_create' article.id  %}" class="btn btn-primary">Добавить комментарий</a>
         </div>
     </div>
 
@@ -32,8 +32,8 @@
                     </div>
                     <div class="card-body">
                         <h5 class="card-title">{{ comment.text }}</h5>
-                        <a href="{% url 'comment_update' comment.id  %}" class="btn btn-primary">Изменить</a>
-                        <a href="{% url 'comment_delete' comment.id  %}" class="btn btn-primary">Удалить</a>
+                        <a href="{% url 'webapp:comment_update' comment.id  %}" class="btn btn-primary">Изменить</a>
+                        <a href="{% url 'webapp:comment_delete' comment.id  %}" class="btn btn-primary">Удалить</a>
                     </div>
                 </div>
             </div>

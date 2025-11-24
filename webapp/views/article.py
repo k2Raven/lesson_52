@@ -27,6 +27,7 @@ class ArticleListView(ListView):
         return queryset
 
     def get_context_data(self, *, object_list=None, **kwargs):
+        print(self.request.user)
         context = super().get_context_data(object_list=object_list, **kwargs)
         context['search_form'] = self.search_form
         if self.search_value:
@@ -65,7 +66,7 @@ class ArticleCreateView(CreateView):
     form_class = ArticleForm
 
     # def get_success_url(self):
-    #     return reverse('article_detail', kwargs={'pk': self.object.pk})
+    #     return reverse('webapp:article_detail', kwargs={'pk': self.object.pk})
 
 
 class ArticleUpdateView(UpdateView):
@@ -74,10 +75,10 @@ class ArticleUpdateView(UpdateView):
     model = Article
 
     # def get_success_url(self):
-    #     return reverse('article_detail', kwargs={'pk': self.object.pk})
+    #     return reverse('webapp:article_detail', kwargs={'pk': self.object.pk})
 
 
 class ArticleDeleteView(DeleteView):
     template_name = 'article/article_delete.html'
     model = Article
-    success_url = reverse_lazy('article_list')
+    success_url = reverse_lazy('webapp:article_list')

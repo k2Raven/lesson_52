@@ -13,8 +13,12 @@
                         <h5 class="card-title">{{ article.title }}</h5>
                         <p class="card-text">Автор: {{ article.author }}</p>
                         <a href="{% url 'webapp:article_detail' article.id %}" class="btn btn-primary">Подробнее...</a>
-                        <a href="{% url 'webapp:article_update' article.id %}" class="btn btn-primary">Изменить</a>
-                        <a href="{% url 'webapp:article_delete' article.id %}" class="btn btn-primary">Удалить</a>
+                        {% if perms.webapp.change_article or article.author == request.user %}
+                            <a href="{% url 'webapp:article_update' article.id %}" class="btn btn-primary">Изменить</a>
+                        {% endif %}
+                        {% if perms.webapp.delete_article %}
+                            <a href="{% url 'webapp:article_delete' article.id %}" class="btn btn-primary">Удалить</a>
+                        {% endif %}
                     </div>
                 </div>
             </div>

@@ -20,3 +20,8 @@ class Article(BaseModel):
 
     def get_absolute_url(self):
         return reverse('webapp:article_detail', kwargs={'pk': self.pk})
+
+    class Meta:
+        permissions = [
+            ('сan_have_piece_of_pizza', 'Может съесть кусочек пиццы')
+        ]

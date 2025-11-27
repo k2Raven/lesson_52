@@ -3,7 +3,7 @@ from django.shortcuts import redirect
 from django.urls import reverse_lazy
 from django.utils.http import urlencode
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
-from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
 
 from webapp.models import Article
 from webapp.forms import ArticleForm, SimpleSearchForm
@@ -70,16 +70,21 @@ class ArticleCreateView(LoginRequiredMixin, CreateView):
         return super().form_valid(form)
 
 
-class ArticleUpdateView(UpdateView):
+class ArticleUpdateView(PermissionRequiredMixin, UpdateView):
     template_name = 'article/article_update.html'
     form_class = ArticleForm
     model = Article
+    permission_required = 'webapp.change_article'
+
+    def has_permission(self):
+        return super().has_permission() or self.get_object().author == self.request.user
 
     # def get_success_url(self):
     #     return reverse('webapp:article_detail', kwargs={'pk': self.object.pk})
 
 
-class ArticleDeleteView(DeleteView):
+class ArticleDeleteView(PermissionRequiredMixin, DeleteView):
     template_name = 'article/article_delete.html'
     model = Article
     success_url = reverse_lazy('webapp:article_list')
+    permission_required = 'webapp.delete_article'

@@ -1,3 +1,4 @@
+from django.contrib.auth import get_user_model
 from django.db import models
 from django.urls import reverse
 
@@ -11,7 +12,7 @@ class Article(BaseModel):
                              blank=False,
                              verbose_name='Заголовок')
     content = models.TextField(verbose_name='Контент')
-    author = models.CharField(max_length=50, default='Anonymous', verbose_name='Автор')
+    author = models.ForeignKey(get_user_model(), related_name='articles', on_delete=models.RESTRICT, verbose_name='Автор')
     tags = models.ManyToManyField('webapp.Tag', verbose_name="Теги", related_name='articles', blank=True)
 
     def __str__(self):

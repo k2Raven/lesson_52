@@ -8,12 +8,11 @@ from webapp.models import Article
 class ArticleForm(forms.ModelForm):
     class Meta:
         model = Article
-        fields = ['title', 'content', 'author', 'tags']
+        fields = ['title', 'content', 'tags']
         # exclude = ['created_at', 'updated_at']
         widgets = {
             'title': widgets.Input(attrs={'class': 'form-control'}),
             'content': widgets.Textarea(attrs={'class': 'form-control'}),
-            'author': widgets.Input(attrs={'class': 'form-control'}),
             'tags': widgets.CheckboxSelectMultiple()
         }
 

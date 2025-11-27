@@ -63,17 +63,11 @@ class ArticleDetailView(DetailView):
 
 class ArticleCreateView(LoginRequiredMixin, CreateView):
     template_name = 'article/article_create.html'
-    # model = Article
-    # fields = ['title', 'content', 'author', 'tags']
     form_class = ArticleForm
 
-    # def dispatch(self, request, *args, **kwargs):
-    #     if request.user.is_authenticated:
-    #         return super().dispatch(request, *args, **kwargs)
-    #     return redirect('accounts:login')
-
-    # def get_success_url(self):
-    #     return reverse('webapp:article_detail', kwargs={'pk': self.object.pk})
+    def form_valid(self, form):
+        form.instance.author = self.request.user
+        return super().form_valid(form)
 
 
 class ArticleUpdateView(UpdateView):

@@ -1,0 +1,317 @@
+[
+{
+  "model": "webapp.article",
+  "pk": 4,
+  "fields": {
+    "created_at": "2025-10-23T15:30:02.386Z",
+    "updated_at": "2025-11-13T13:56:31.470Z",
+    "title": "test123",
+    "content": "qwe\r\nqaweqw\r\nadqew",
+    "author": 1,
+    "tags": [
+      2
+    ]
+  }
+},
+{
+  "model": "webapp.article",
+  "pk": 5,
+  "fields": {
+    "created_at": "2025-10-30T14:10:33.784Z",
+    "updated_at": "2025-10-30T14:10:33.784Z",
+    "title": "New article",
+    "content": "text",
+    "author": 1,
+    "tags": []
+  }
+},
+{
+  "model": "webapp.article",
+  "pk": 6,
+  "fields": {
+    "created_at": "2025-10-30T14:11:04.867Z",
+    "updated_at": "2025-10-30T14:11:04.867Z",
+    "title": "New article",
+    "content": "text",
+    "author": 1,
+    "tags": []
+  }
+},
+{
+  "model": "webapp.article",
+  "pk": 8,
+  "fields": {
+    "created_at": "2025-11-03T14:26:39.739Z",
+    "updated_at": "2025-11-03T14:28:07.376Z",
+    "title": "qweqwew",
+    "content": "tetzosbd",
+    "author": 1,
+    "tags": []
+  }
+},
+{
+  "model": "webapp.article",
+  "pk": 9,
+  "fields": {
+    "created_at": "2025-11-05T13:26:48.184Z",
+    "updated_at": "2025-11-05T13:26:48.184Z",
+    "title": "wqeqweqw",
+    "content": "wqeqweqw2",
+    "author": 1,
+    "tags": [
+      1,
+      2
+    ]
+  }
+},
+{
+  "model": "webapp.article",
+  "pk": 10,
+  "fields": {
+    "created_at": "2025-11-10T15:09:58.255Z",
+    "updated_at": "2025-11-10T15:09:58.255Z",
+    "title": "tewrwe",
+    "content": "fcwfqwf",
+    "author": 1,
+    "tags": []
+  }
+},
+{
+  "model": "webapp.article",
+  "pk": 11,
+  "fields": {
+    "created_at": "2025-11-10T15:14:59.411Z",
+    "updated_at": "2025-11-10T15:14:59.411Z",
+    "title": "qweqw",
+    "content": "qweqweq",
+    "author": 1,
+    "tags": [
+      1,
+      2
+    ]
+  }
+},
+{
+  "model": "webapp.article",
+  "pk": 12,
+  "fields": {
+    "created_at": "2025-11-13T13:21:21.879Z",
+    "updated_at": "2025-11-13T13:21:21.879Z",
+    "title": "qwe",
+    "content": "qweqweqw",
+    "author": 1,
+    "tags": [
+      1,
+      2
+    ]
+  }
+},
+{
+  "model": "webapp.article",
+  "pk": 13,
+  "fields": {
+    "created_at": "2025-11-13T13:21:36.291Z",
+    "updated_at": "2025-11-13T13:21:36.291Z",
+    "title": "1121212",
+    "content": "213123",
+    "author": 1,
+    "tags": [
+      1,
+      2,
+      9,
+      10
+    ]
+  }
+},
+{
+  "model": "webapp.article",
+  "pk": 14,
+  "fields": {
+    "created_at": "2025-11-13T13:23:01.912Z",
+    "updated_at": "2025-11-13T13:23:01.912Z",
+    "title": "regerg",
+    "content": "ergerger",
+    "author": 1,
+    "tags": [
+      1
+    ]
+  }
+},
+{
+  "model": "webapp.article",
+  "pk": 16,
+  "fields": {
+    "created_at": "2025-11-20T13:10:50.898Z",
+    "updated_at": "2025-11-20T13:10:50.898Z",
+    "title": "Статья 6",
+    "content": "ацуацуацу\r\nацуацуацу",
+    "author": 1,
+    "tags": [
+      1,
+      2,
+      9
+    ]
+  }
+},
+{
+  "model": "webapp.article",
+  "pk": 17,
+  "fields": {
+    "created_at": "2025-11-20T13:17:17.734Z",
+    "updated_at": "2025-11-20T13:17:17.734Z",
+    "title": "Статья 7",
+    "content": "йацйа\r\nа\r\nйцайцайцайца\r\nайцайц",
+    "author": 1,
+    "tags": [
+      1,
+      10
+    ]
+  }
+},
+{
+  "model": "webapp.article",
+  "pk": 18,
+  "fields": {
+    "created_at": "2025-11-20T13:19:12.213Z",
+    "updated_at": "2025-11-20T13:27:17.971Z",
+    "title": "СТатья 8 qwe 12",
+    "content": "айцай\r\nа\r\nйца\r\nйца\r\nйцайца",
+    "author": 1,
+    "tags": [
+      1,
+      2,
+      9,
+      10
+    ]
+  }
+},
+{
+  "model": "webapp.article",
+  "pk": 19,
+  "fields": {
+    "created_at": "2025-11-27T14:45:59.343Z",
+    "updated_at": "2025-11-27T15:12:27.671Z",
+    "title": "СТатья 1234232qwe",
+    "content": "увуцв\r\nйв\r\nйцвйцвйцвйц\r\nвйцвйцвй",
+    "author": 6,
+    "tags": [
+      1,
+      2
+    ]
+  }
+},
+{
+  "model": "webapp.article",
+  "pk": 20,
+  "fields": {
+    "created_at": "2025-11-27T15:19:54.916Z",
+    "updated_at": "2025-11-27T15:19:54.916Z",
+    "title": "qwe",
+    "content": "123",
+    "author": 2,
+    "tags": [
+      1
+    ]
+  }
+},
+{
+  "model": "webapp.comment",
+  "pk": 1,
+  "fields": {
+    "created_at": "2025-11-10T13:51:13.998Z",
+    "updated_at": "2025-11-10T13:51:13.998Z",
+    "article": 4,
+    "text": "Text text",
+    "author": 1
+  }
+},
+{
+  "model": "webapp.comment",
+  "pk": 2,
+  "fields": {
+    "created_at": "2025-11-10T13:52:18.606Z",
+    "updated_at": "2025-11-10T13:52:18.606Z",
+    "article": 4,
+    "text": "test",
+    "author": 1
+  }
+},
+{
+  "model": "webapp.comment",
+  "pk": 3,
+  "fields": {
+    "created_at": "2025-11-27T14:48:48.727Z",
+    "updated_at": "2025-11-27T14:48:48.727Z",
+    "article": 19,
+    "text": "qwe",
+    "author": 6
+  }
+},
+{
+  "model": "webapp.comment",
+  "pk": 4,
+  "fields": {
+    "created_at": "2025-11-27T14:49:20.935Z",
+    "updated_at": "2025-11-27T14:49:20.935Z",
+    "article": 19,
+    "text": "sadasdasq",
+    "author": 1
+  }
+},
+{
+  "model": "webapp.comment",
+  "pk": 5,
+  "fields": {
+    "created_at": "2025-11-27T15:19:45.900Z",
+    "updated_at": "2025-11-27T15:19:45.900Z",
+    "article": 19,
+    "text": "qweqwe",
+    "author": 2
+  }
+},
+{
+  "model": "webapp.tag",
+  "pk": 1,
+  "fields": {
+    "created_at": "2025-11-10T13:58:05.437Z",
+    "updated_at": "2025-11-10T13:58:05.437Z",
+    "name": "Python"
+  }
+},
+{
+  "model": "webapp.tag",
+  "pk": 2,
+  "fields": {
+    "created_at": "2025-11-10T13:58:26.161Z",
+    "updated_at": "2025-11-10T13:58:26.161Z",
+    "name": "Django"
+  }
+},
+{
+  "model": "webapp.tag",
+  "pk": 9,
+  "fields": {
+    "created_at": "2025-11-12T13:40:35.333Z",
+    "updated_at": "2025-11-12T13:40:35.333Z",
+    "name": "JS"
+  }
+},
+{
+  "model": "webapp.tag",
+  "pk": 10,
+  "fields": {
+    "created_at": "2025-11-12T13:40:35.334Z",
+    "updated_at": "2025-11-12T13:40:35.334Z",
+    "name": "PHP"
+  }
+},
+{
+  "model": "webapp.tag",
+  "pk": 11,
+  "fields": {
+    "created_at": "2025-11-12T13:40:35.334Z",
+    "updated_at": "2025-11-12T13:40:35.334Z",
+    "name": "Java"
+  }
+}
+]

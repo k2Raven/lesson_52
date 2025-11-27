@@ -37,6 +37,7 @@
                 </form>
             {% else %}
                 <a class="nav-link active" aria-current="page" href="{% url 'accounts:login' %}?next={{ request.get_full_path }}">Войти</a>
+                <a class="nav-link active" aria-current="page" href="{% url 'accounts:register' %}?next={{ request.get_full_path }}">Зарегистрироваться</a>
             {% endif %}
             </div>
         </div>

@@ -1,24 +1,30 @@
-from django.contrib.auth import authenticate, login, logout
-from django.shortcuts import render, redirect
+from django.urls import reverse
+from django.views.generic import CreateView
+from django.contrib.auth import get_user_model, login
+from django.shortcuts import redirect
+from accounts.forms import MyUserCreationForm
 
 
-def login_view(request):
-    context = {}
-    if request.method == 'POST':
-        username = request.POST.get('username')
-        password = request.POST.get('password')
-        user = authenticate(request, username=username, password=password)
-        if user is not None:
-            login(request, user)
-            return redirect('webapp:article_list')
-        else:
-            context['has_error'] = True
-    return render(request, 'login.html', context=context)
+User = get_user_model()
 
+class RegisterView(CreateView):
+    template_name = 'user_create.html'
+    model = User
+    form_class = MyUserCreationForm
 
-def logout_view(request):
-    logout(request)
-    return redirect('webapp:article_list')
+    def form_valid(self, form):
+        user = form.save()
+        login(self.request, user)
+        return redirect(self.get_success_url())
+
+    def get_success_url(self):
+        next = self.request.GET.get('next')
+        if not next:
+            next = self.request.POST.get('next')
+        if not next:
+            next = reverse('webapp:article_list')
+        return next
+
 
 
 

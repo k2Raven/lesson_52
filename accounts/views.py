@@ -1,5 +1,6 @@
+from django.core.paginator import Paginator
 from django.urls import reverse
-from django.views.generic import CreateView
+from django.views.generic import CreateView, DetailView
 from django.contrib.auth import get_user_model, login
 from django.shortcuts import redirect
 from accounts.forms import MyUserCreationForm
@@ -25,6 +26,18 @@ class RegisterView(CreateView):
             next = reverse('webapp:article_list')
         return next
 
+class UserDetailView(DetailView):
+    model = User
+    template_name = 'user_detail.html'
+    context_object_name = 'user_obj'
 
 
-
+    def get_context_data(self, **kwargs):
+        articles = self.object.articles.order_by('-created_at')
+        paginator = Paginator(articles, 4)
+        page_number = self.request.GET.get('page', 1)
+        page = paginator.get_page(page_number)
+        kwargs['articles'] = page.object_list
+        kwargs['page_obj'] = page
+        kwargs['is_paginated'] = page.has_other_pages()
+        return super().get_context_data(**kwargs)

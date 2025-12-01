@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block title %}Профиль{% endblock %}
+
+{% block content %}
+    <h1>Профиль пользователя</h1>
+    <div class="card mb-3">
+        <div class="row g-0">
+            <div class="col-md-4">
+                {% if user_obj.profile.avatar %}
+                    <img src="{{ user_obj.profile.avatar.url }}" class="img-fluid rounded-start" alt="user avatar">
+                {% endif %}
+            </div>
+            <div class="col-md-8">
+                <div class="card-body">
+                    <h5 class="card-title">Логин пользователя: {{ user_obj.username }}</h5>
+                    <p class="card-text">Имя: {{ user_obj.first_name|default:'-' }}</p>
+                    <p class="card-text">Фамилия: {{ user_obj.last_name|default:'-' }}</p>
+                    <p class="card-text">Почта: {{ user_obj.email|default:'-' }}</p>
+                    <p class="card-text">Дата рождения: {{ user_obj.profile.birth_date|date:'d.m.Y'|default:'-' }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div>
+        <h2>Статьи пользователя {{ user_obj.username }}</h2>
+        {% include 'partial/article_list.html' %}
+    </div>
+{% endblock %}

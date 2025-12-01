@@ -1,1 +1,2 @@
 from accounts.forms.user_creation_form import MyUserCreationForm
+from accounts.forms.user_change_form import UserChangeForm, ProfileChangeForm

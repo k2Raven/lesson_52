@@ -2,6 +2,10 @@
 
 {% block title %}Профиль{% endblock %}
 
+{% block menu %}
+    <a class="nav-link active" aria-current="page" href="{% url 'accounts:profile_edit' user_obj.pk %}">Редактировать</a>
+{% endblock %}
+
 {% block content %}
     <h1>Профиль пользователя</h1>
     <div class="card mb-3">

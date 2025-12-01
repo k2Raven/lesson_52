@@ -128,3 +128,6 @@ LOGIN_REDIRECT_URL = 'webapp:article_list'
 LOGOUT_REDIRECT_URL = 'webapp:article_list'
 
 LOGIN_URL = 'accounts:login'
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = BASE_DIR / 'uploads/'

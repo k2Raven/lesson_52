@@ -5,7 +5,7 @@
 {% block content %}
     <div class="card">
         <div class="card-header">
-            Автор:{{ article.author }}
+            <a href="{% url 'accounts:profile' article.author.pk %}">Автор:{{ article.author }}</a>
         </div>
         <div class="card-body">
             <h5 class="card-title">{{ article.title }}</h5>
@@ -29,7 +29,7 @@
             <div class="col">
                 <div class="card">
                     <div class="card-header">
-                        <p>Автор:{{ comment.author }}</p>
+                        <a href="{% url 'accounts:profile' comment.author.pk %}">Автор:{{ comment.author }}</a>
                         {#                        <span>{{ comment.created_at }}</span>#}
                     </div>
                     <div class="card-body">

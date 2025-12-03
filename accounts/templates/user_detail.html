@@ -3,7 +3,10 @@
 {% block title %}Профиль{% endblock %}
 
 {% block menu %}
-    <a class="nav-link active" aria-current="page" href="{% url 'accounts:profile_edit' user_obj.pk %}">Редактировать</a>
+    {% if request.user == user_obj %}
+        <a class="nav-link active" aria-current="page" href="{% url 'accounts:profile_edit' user_obj.pk %}">Редактировать</a>
+        <a class="nav-link active" aria-current="page" href="{% url 'accounts:password_change' %}">Смена пароля</a>
+    {% endif %}
 {% endblock %}
 
 {% block content %}

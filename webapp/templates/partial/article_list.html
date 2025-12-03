@@ -4,7 +4,7 @@
             <div class="card mb-2">
                 <div class="card-body">
                     <h5 class="card-title">{{ article.title }}</h5>
-                    <p class="card-text">Автор: {{ article.author }}</p>
+                    <a class="card-text" href="{% url 'accounts:profile' article.author.pk %}">Автор: {{ article.author }}</a>
                     <a href="{% url 'webapp:article_detail' article.id %}" class="btn btn-primary">Подробнее...</a>
                     {% if perms.webapp.change_article or article.author == request.user %}
                         <a href="{% url 'webapp:article_update' article.id %}" class="btn btn-primary">Изменить</a>

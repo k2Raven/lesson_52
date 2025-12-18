@@ -10,6 +10,7 @@
         <div class="card-body">
             <h5 class="card-title">{{ article.title }}</h5>
             <p class="card-text">{{ article.content }}</p>
+        <a href="{% url 'webapp:test_view' article.pk %}" class="test_url">Нажми</a>
             <p class="card-text">
                 {% for tag in article.tags.all %}
                     {{ tag }}{% if forloop.last %}.{% else %},{% endif %}

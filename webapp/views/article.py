@@ -1,7 +1,9 @@
 from django.db.models import Q
+from django.http import JsonResponse
 from django.shortcuts import redirect
 from django.urls import reverse_lazy
 from django.utils.http import urlencode
+from django.views import View
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
 
@@ -88,3 +90,10 @@ class ArticleDeleteView(PermissionRequiredMixin, DeleteView):
     model = Article
     success_url = reverse_lazy('webapp:article_list')
     permission_required = 'webapp.delete_article'
+
+
+class TestView(View):
+    def get(self, request, pk, *args, **kwargs):
+        print(pk)
+        print(request.user)
+        return JsonResponse({'pk': pk, 'test': 'text', 'number': 123})

@@ -6,6 +6,11 @@
     "name": "Moderators",
     "permissions": [
       [
+        "add_article",
+        "webapp",
+        "article"
+      ],
+      [
         "change_article",
         "webapp",
         "article"
@@ -32,16 +37,16 @@
   "model": "auth.user",
   "pk": 1,
   "fields": {
-    "password": "pbkdf2_sha256$1000000$sNQh6lyX7ZkvZfGycblu52$EXZ4Mkd72Lw0XvdoGB4Y/FF6hLeANuHvT20bvQhFoWs=",
-    "last_login": "2025-11-27T14:55:47.380Z",
+    "password": "pbkdf2_sha256$1000000$hEWz2GZmaiCAGbEujgwnz9$N8JLfQJzlSvZVOkrd4i9QbESelbPpCP87crloo9HqDI=",
+    "last_login": "2025-12-03T13:23:09.129Z",
     "is_superuser": true,
     "username": "admin",
-    "first_name": "",
-    "last_name": "",
-    "email": "",
+    "first_name": "Aleksei",
+    "last_name": "Kuzmin",
+    "email": "qwe@qwe.ry",
     "is_staff": true,
     "is_active": true,
-    "date_joined": "2025-10-23T14:03:49.412Z",
+    "date_joined": "2025-10-23T14:03:49Z",
     "groups": [],
     "user_permissions": []
   }
@@ -51,7 +56,7 @@
   "pk": 2,
   "fields": {
     "password": "pbkdf2_sha256$1000000$lvM3BrCi2kqwbOk070JU9j$Ui8CHJtdMFE7cpF6SMavBQdQo+oEequmX7ByXJ79P0Q=",
-    "last_login": "2025-11-27T15:15:10.920Z",
+    "last_login": "2025-12-03T13:45:30.727Z",
     "is_superuser": false,
     "username": "user1",
     "first_name": "",
@@ -75,7 +80,7 @@
   "pk": 3,
   "fields": {
     "password": "pbkdf2_sha256$1000000$QXUe35y4qy3nHd4tmVsVib$cVsNieJXLhaA7ql07g2WK6JtbzRg54mN0t/IT1MOMAQ=",
-    "last_login": "2025-11-27T15:06:25.150Z",
+    "last_login": "2025-12-03T13:45:48.575Z",
     "is_superuser": false,
     "username": "user2",
     "first_name": "",

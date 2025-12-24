@@ -304,14 +304,5 @@
     "updated_at": "2025-11-12T13:40:35.334Z",
     "name": "PHP"
   }
-},
-{
-  "model": "webapp.tag",
-  "pk": 11,
-  "fields": {
-    "created_at": "2025-11-12T13:40:35.334Z",
-    "updated_at": "2025-11-12T13:40:35.334Z",
-    "name": "Java"
-  }
 }
 ]

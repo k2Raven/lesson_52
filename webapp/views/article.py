@@ -2,8 +2,10 @@ from django.db.models import Q
 from django.http import JsonResponse
 from django.shortcuts import redirect
 from django.urls import reverse_lazy
+from django.utils.decorators import method_decorator
 from django.utils.http import urlencode
 from django.views import View
+from django.views.decorators.csrf import ensure_csrf_cookie
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
 
@@ -48,7 +50,7 @@ class ArticleListView(ListView):
             search_value = self.search_form.cleaned_data.get('search', '')
         return search_value
 
-
+@method_decorator(ensure_csrf_cookie, name='dispatch')
 class ArticleDetailView(DetailView):
     template_name = 'article/article_detail.html'
     model = Article
@@ -97,3 +99,10 @@ class TestView(View):
         print(pk)
         print(request.user)
         return JsonResponse({'pk': pk, 'test': 'text', 'number': 123})
+
+    def post(self, request, pk, *args, **kwargs):
+        print(pk)
+        print(request.user)
+        print(request.body)
+        return JsonResponse({'pk': pk, 'test': 'text', 'number': 123})
+

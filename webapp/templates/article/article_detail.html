@@ -10,7 +10,7 @@
         <div class="card-body">
             <h5 class="card-title">{{ article.title }}</h5>
             <p class="card-text">{{ article.content }}</p>
-        <a href="{% url 'webapp:test_view' article.pk %}" class="test_url">Нажми</a>
+            <a href="{% url 'webapp:test_view' article.pk %}" class="test_url">Нажми</a>
             <p class="card-text">
                 {% for tag in article.tags.all %}
                     {{ tag }}{% if forloop.last %}.{% else %},{% endif %}
@@ -21,6 +21,15 @@
             {% if request.user.is_authenticated %}
                 <a href="{% url 'webapp:comment_create' article.id %}" class="btn btn-primary">Добавить комментарий</a>
             {% endif %}
+
+        <div>
+            <form action="{% url 'webapp:test_view' article.pk %}" id="test_form">
+                <input type="text" name="test_input">
+                <button type="submit">Отправить</button>
+            </form>
+
+        </div>
+
         </div>
     </div>
 

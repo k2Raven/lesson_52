@@ -1,21 +1,20 @@
 from rest_framework import viewsets
 from rest_framework.decorators import action
-from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
+from api_v3.premissions import IsAuthorOrReadOnly
 from webapp.models import Article, Comment
 from api_v3.serializers import ArticleSerializer, CommentSerializer, ArticleListSerializer
 
 
 class ArticleViewSet(viewsets.ModelViewSet):
-    permission_classes = [IsAuthenticated]
+    permission_classes = [IsAuthorOrReadOnly]
     queryset = Article.objects.all()
-    # serializer_class = ArticleSerializer
     pagination_class = None
 
-    # def list(self, request, *args, **kwargs):
-    #     return Response({'message': 'Hello World'})
+    def perform_create(self, serializer):
+        serializer.save(author=self.request.user)
 
     def get_serializer_class(self):
         print(self.request.user)
@@ -25,8 +24,6 @@ class ArticleViewSet(viewsets.ModelViewSet):
 
     @action(detail=True, methods=['GET'], url_path='comments')
     def get_comments(self, request, *args, **kwargs):
-        # print(kwargs)
-        # print(args)
         print(request)
         print(request.data)
         article = self.get_object()

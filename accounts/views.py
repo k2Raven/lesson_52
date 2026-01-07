@@ -1,10 +1,12 @@
-from django.contrib.auth.views import PasswordChangeView
+from django.contrib.auth.views import PasswordChangeView, LogoutView, LoginView
 from django.core.paginator import Paginator
 from django.urls import reverse
 from django.views.generic import CreateView, DetailView, UpdateView
 from django.contrib.auth import get_user_model, login
 from django.shortcuts import redirect
 from django.contrib.auth.mixins import UserPassesTestMixin, LoginRequiredMixin
+from rest_framework.authtoken.models import Token
+
 from accounts.forms import MyUserCreationForm, UserChangeForm, ProfileChangeForm
 from accounts.models import Profile
 
@@ -87,3 +89,21 @@ class UserPasswordChangeView(LoginRequiredMixin, PasswordChangeView):
 
     def get_success_url(self):
         return reverse('accounts:profile', kwargs={'pk': self.request.user.pk})
+
+
+class CustomLoginView(LoginView):
+    template_name = 'login.html'
+
+    def form_valid(self, form):
+        response = super().form_valid(form)
+        user = form.get_user()
+        token, _ = Token.objects.get_or_create(user=user)
+        response.set_cookie('auth_token', token.key)
+        return response
+
+class CustomLogoutView(LogoutView):
+    def post(self, request, *args, **kwargs):
+        user = request.user
+        if user.is_authenticated:
+            user.auth_token.delete()
+        return super().post(request, *args, **kwargs)
